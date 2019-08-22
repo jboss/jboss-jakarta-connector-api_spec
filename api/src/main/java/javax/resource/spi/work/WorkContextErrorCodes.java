@@ -69,4 +69,9 @@ public class WorkContextErrorCodes {
 	 */
 	public static final String CONTEXT_SETUP_UNSUPPORTED = "4";
 
+	/**
+	 * Constructor
+	 */
+	public WorkContextErrorCodes() {
+	}
 }

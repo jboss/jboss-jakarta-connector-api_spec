@@ -28,6 +28,9 @@ package javax.resource.spi;
 public class SharingViolationException 
         extends javax.resource.ResourceException {
 
+    /** Serial version uid */
+    private static final long serialVersionUID = -1280304091132682215L;
+
     /**
      * Constructs a new instance with null as its detail message.
      */
