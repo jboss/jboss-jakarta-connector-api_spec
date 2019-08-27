@@ -74,12 +74,12 @@
     </licenses>
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/eclipse-ee4j/jca-api/issues</url>
+        <url>https://github.com/jboss/jboss-jakarta-connector-api_spec/issues</url>
     </issueManagement>
     <scm>
-        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/jca-api.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/jca-api.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/jca-api</url>
+        <connection>scm:git:ssh://git@github.com/jboss/jboss-jakarta-connector-api_spec.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jboss/jboss-jakarta-connector-api_spec.git</developerConnection>
+        <url>https://github.com/jboss/jboss-jakarta-connector-api_spec</url>
       <tag>HEAD</tag>
     </scm>
 
@@ -134,34 +134,10 @@
                 </executions>
             </plugin>             
 -->
+            <!-- Generate the OSGi jar Manifest. -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <supportedProjectTypes>
-                        <supportedProjectType>jar</supportedProjectType>
-                    </supportedProjectTypes>
-                    <archive>
-                        <manifestEntries>
-                        <Automatic-Module-Name>beta.jboss.connector.api_1_7</Automatic-Module-Name>
-                        </manifestEntries>
-                    </archive>
-                    <instructions>
-                        <Bundle-Version>${spec.bundle.version}</Bundle-Version>
-                        <Bundle-SymbolicName>${spec.bundle.symbolic-name}</Bundle-SymbolicName>
-                        <Extension-Name>${spec.extension.name}</Extension-Name>
-                        <Implementation-Version>${spec.implementation.version}</Implementation-Version>
-                        <Specification-Version>${spec.specification.version}</Specification-Version> 
-                        <Bundle-Description>
-                            Jakarta Connectors ${spec.version} Specification
-                        </Bundle-Description>
-                        <Specification-Vendor>Jakarta Connectors</Specification-Vendor>
-                        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
-                        <Import-Package>javax.transaction;version="[1.3,2.0)",*</Import-Package>
-<_include>-${basedir}/osgi.bundle</_include>
-                    </instructions>
-                </configuration>
                 <executions>
                     <execution>
                         <id>bundle-manifest</id>
@@ -171,6 +147,25 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Automatic-Module-Name>beta.jboss.connector.api_1_7</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                    <instructions>
+                        <Specification-Title>Jakarta Connectors Architecture</Specification-Title>
+                        <Specification-Vendor>Jakarta Connectors</Specification-Vendor>
+                        <Specification-Version>1.7</Specification-Version>
+                        <!-- Set the package version to match the spec version -->
+                        <Export-Package>
+                            javax.resource*;version=1.7
+                        </Export-Package>
+                    </instructions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -183,6 +178,19 @@
                     <excludes>
                         <exclude>**/*.java</exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Specification-Title>Jakarta Connectors Architecture</Specification-Title>
+                            <Specification-Vendor>Jakarta Connectors</Specification-Vendor>
+                            <Specification-Version>1.7</Specification-Version>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
             <plugin>

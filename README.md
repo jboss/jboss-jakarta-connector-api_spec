@@ -1,5 +1,11 @@
-# Jakarta&trade; Connectors
-The Jakarta Connectors specification defines a standard architecture for
-Jakarta EE application components to connect to Enterprise Information Systems.
+JBoss Jakarta Connectors
+==================================
 
-* https://projects.eclipse.org/projects/ee4j.jca
+What is this
+-----------------------
+
+This is fork of Jakarta&trade; Connectors api project, with few extra fixes to make it work better inside WildFly's modular classloader.
+
+Upstream used: https://github.com/eclipse-ee4j/jca-api
+
+
