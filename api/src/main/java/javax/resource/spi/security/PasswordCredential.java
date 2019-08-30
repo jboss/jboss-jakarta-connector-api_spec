@@ -138,14 +138,14 @@ public final class PasswordCredential implements java.io.Serializable {
   **/
   public
   int hashCode() {
-    String s = userName;
+    int userNameHash = userName != null ? userName.hashCode() : 0;
 
       int passwordHash = 0;
       for (char passChar : password) {
           passwordHash += passChar;
       }
 
-    return s.hashCode() + passwordHash;
+    return userNameHash + passwordHash;
   }
 
 }
